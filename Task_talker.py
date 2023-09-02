@@ -13,7 +13,7 @@ class Talker():
         print("Q:停止 \n   W:↑ \n      A:← D:→  \n   S:↓")
     
      
-    def time_callback(self): #引数として渡される関数 callback関数
+    def talker_callback(self): #引数として渡される関数 callback関数
         key = input("w:forward, s:backward, d:right, a:left, q:stop <<")
         
         if key == 'q': 
