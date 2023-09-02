@@ -1,0 +1,59 @@
+#!/usr/bin/env python3    
+
+import rospy
+from std_msgs.msg import String
+from geometry_msgs.msg import Twist
+
+class Talker():
+    def __init__(self):
+        self.publisher = self.create_publisher(Twist, 'cmd_vel', 1)
+    
+        self.vel = Twist()
+        print("Enter W A S D Q key")
+        print("Q:停止 \n   W:↑ \n      A:← D:→  \n   S:↓")
+    
+     
+    def time_callback(self): #引数として渡される関数 callback関数
+        key = input("w:forward, s:backward, d:right, a:left, q:stop <<")
+        
+        if key == 'q': 
+            self.vel.linear.x  =  0
+            self.vel.angular.z =  0 
+
+        elif key == 'w':
+            self.vel.linear.x  =  0.5
+
+        elif key == 's':
+            self.vel.linear.x  = -0.5
+            
+        elif key == 'a':
+            self.vel.angular.z =  1.0
+            
+        elif key == 'd' : 
+            self.vel.angular.z = -1.0
+        
+        else :
+            print("Enter W A S D Q key") 
+            
+       
+        mydic = {"q":" q (停止)", "w":" w (前)", "s":" s (後)", "a":" a (左)", "d":" d (右)"}
+        val = mydic[key]
+        print("入力:"+ val)
+            
+        self.publisher.publish(self.vel) #?
+        
+        
+            
+    
+    
+if __name__ == '__main__':  # 初期化宣言 
+     rospy.init_node("turtle_talker_node")
+     talker = Talker()      #インスタンス化
+                            
+     rate = rospy.Rate(10)  #１秒に10回?
+     rospy.spin()           #ノードが動いている間コールバック関数を呼び続ける
+     
+     while not rospy.is_shutdown():
+        talker.publish()
+        rate.sleep()
+    
