@@ -1,4 +1,4 @@
 <launch>
-  <node pkg="turtle" name="Task_talker.py.py" type="Talker.py" />
-  <node pkg="turtle" name="Task_listener.py" type="Task_listener.py" />
+  <node pkg="turtle" name="turtle_talker" type= Task_talker.py />
+  <node pkg="turtle" name="turtle_listener" type= Task_listener.py/>
 </launch>
