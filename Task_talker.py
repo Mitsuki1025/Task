@@ -3,8 +3,8 @@
 import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist
-
-class TurtleLTalker():
+    
+class TurtleLTalker():  
     def teleop():
         super().__init__('turtle_talker_node') 
         pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=1)
