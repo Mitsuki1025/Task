@@ -5,10 +5,10 @@ from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 
 class Talker():
-    def __init__(self):
-        self.publisher = self.create_publisher(Twist, 'cmd_vel', 1)
-    
-        self.vel = Twist()
+    def teleop():
+        super().__init__('turtle_talker_node') 
+        pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=1)
+        vel = Twist()
         print("Enter W A S D Q key")
         print("Q:停止 \n   W:↑ \n      A:← D:→  \n   S:↓")
     
@@ -43,13 +43,8 @@ class Talker():
         self.publisher.publish(self.vel) #?
         
         
-            
-    
-    
 if __name__ == '__main__':  # 初期化宣言 
-     rospy.init_node("turtle_talker_node")
-     talker = Talker()      #インスタンス化
-                            
+     rospy.init_node("turtle_talker_node")                   
      rate = rospy.Rate(10)  #１秒に10回?
      rospy.spin()           #ノードが動いている間コールバック関数を呼び続ける
      
