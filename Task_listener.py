@@ -4,7 +4,7 @@ import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 
-class Listener():
+class TurtleListener():
     def __init__(self): #コンストラクタ　__init__
                         #selfはインスタンス変数？
             super().__init__('turtle_listener_node')
@@ -17,8 +17,7 @@ class Listener():
     def listener_callback(self, Twist):
          self.get_logger().info("Velocity: Linear=%f angular=%f" % (Twist.linear.x,Twist.angular.z)) 
     
-        
 if __name__ == '__main__':  # 初期化宣言 
      rospy.init_node("turtle_lintener_node") 
+     turtle_listener = TurtleListener()
      rospy.spin()           #ノードが動いている間コールバック関数を呼び続ける
-     rospy.Subscriber("/cmd_vel_mux/input/teleop", Twist, callback)
