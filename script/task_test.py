@@ -6,7 +6,6 @@ from turtlesim.msg import Pose
 
 ##########################################
 
-
 cmd_vel = Twist()
 cmd_vel.linear.x = 2.0
 cmd_vel.angular.z = 0.0
