@@ -2,7 +2,6 @@
 
 import rospy
 from geometry_msgs.msg import Twist
-from turtlesim.msg import Pose
 
 ##########################################
 #pose使うようにする
@@ -10,8 +9,8 @@ from turtlesim.msg import Pose
 class TurtleLTestTal():  
     def __init__(self):
         self.publisher = self.publisher(Twist,'cmd_vel', self.talker_callback, 10)  
-#この辺違うかも　参照：https://wiki-ros-org.translate.goog/turtlesim/Tutorials/Go%20to%20Goal?_x_tr_sch=http&_x_tr_sl=en&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=sc
-        super().__init__('turtle_test_tal_node') #super()は親クラスを示すためのメソッド ?
+             #この辺違うかも　参照：https://wiki-ros-org.translate.goog/turtlesim/Tutorials/Go%20to%20Goal?_x_tr_sch=http&_x_tr_sl=en&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=sc
+        rospy.init_node('turtle_test_tal_node') 
                         
         print("Enter W A S D Q key")
         print("q:停止 \n   W:↑ \n      A:← D:→  \n   S:↓")
@@ -54,15 +53,11 @@ class TurtleLTestTal():
 
 #↑ここまで
 
-    rate = rospy.Rate(10) # 10hz
-    while not rospy.is_shutdown():
-        rospy.publish('cmd_vel') #トピックの名前がcmd_vel
-        rate.sleep()
-
-
     
 if __name__ == '__main__':   #①初期化宣言  最初に実行
      turtle_test_tal = TurtleLTestTal()  #ノードの作成
-     rospy.init(args=None) # rospyモジュールの初期化
      cmd_vel = Twist()
-     pose = Pose()
+     rate = rospy.Rate(10) # 10hz
+     while not rospy.is_shutdown():
+        rospy.publish('cmd_vel') #トピックの名前がcmd_vel
+        rate.sleep()
