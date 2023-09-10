@@ -1,23 +1,20 @@
 #!/usr/bin/env python3
 
 import rospy
-from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 
+##################################################
+
 class TurtleListener():
-    def __init__(self): #コンストラクタ　__init__
-                        #selfはインスタンス変数？
-            super().__init__('turtle_listener_node')
-            self.subscription = self.create_subscription(Twist,'cmd_vel', self.listener_callback, 10) 
-            #subscriberの生成
-            #1番目の引数　Twist＝メッセージ型
-            #2番目の引数　cmd_vel トピック名　？
-            #3番目の引数  callback関数
-            #4番目の引数  キューのサイズ　？
-    def listener_callback(self, Twist):
-         self.get_logger().info("Velocity: Linear=%f angular=%f" % (Twist.linear.x,Twist.angular.z)) 
+    def __init__(self): 
+            self.subscription = self.create_subscription(Twist,'cmd_vel', 10) 
+            rospy.init_node('turtle_try_tal_node')
+
     
-if __name__ == '__main__':  # 初期化宣言 
-     rospy.init_node("turtle_lintener_node") 
-     turtle_listener = TurtleListener()
-     rospy.spin()           #ノードが動いている間コールバック関数を呼び続ける
+def main(args=None):
+    rospy.init(args=args) # rospyモジュールの初期化
+    
+if __name__ == '__main__':  # 初期化宣言  最初に実行
+    cmd_vel = Twist() 
+    rospy.init_node("task_test_lis_node") 
+    rospy.spin() 
