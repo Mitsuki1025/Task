@@ -8,7 +8,7 @@ from geometry_msgs.msg import Twist
 class TurtleTryLis():
     def __init__(self): 
             self.subscription = self.create_subscription(Twist,'cmd_vel', 10) 
-            rospy.init_node('turtle_try_tal_node')
+            rospy.init_node('turtle_test_tal_node')
 
     
 def main(args=None):
