@@ -41,7 +41,6 @@ class TurtleLTalker():
         print("入力:"+ val)
             
         self.publisher.publish(self.vel) #?
-      
         
         
 if __name__ == '__main__':  # 初期化宣言 
