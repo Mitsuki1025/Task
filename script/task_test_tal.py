@@ -8,7 +8,7 @@ from geometry_msgs.msg import Twist
 class TurtleTryTal():  
     def __init__(self):
         self.publisher = self.publisher(Twist,'cmd_vel', 10)  
-        rospy.init_node('turtle_try_tal_node') 
+        rospy.init_node('turtle_test_tal_node') 
         while not rospy.is_shutdown():
          rate = rospy.Rate(10) # 10hz
          rate.sleep()
