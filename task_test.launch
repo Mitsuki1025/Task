@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="task" name="turtle_test_tal"  type= "task_test_tal.py" />
+  <node pkg="task" name="turtle_test_lis"  type= "task_test_lis.py" />
+  <node pkg="turtlesim" name = "teleop_turtle"  executable = "turtle_teleop_key" output="screen"/>
+    <remap from="cmd_vel" to="turtle1/cmd_vel"/>
+</launch> 
+
