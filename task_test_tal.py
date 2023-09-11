@@ -2,8 +2,7 @@
 
 import rospy
 from geometry_msgs.msg import Twist
-from launch import LaunchDescription
-import launch_ros.actions 
+
 
 ###########################################################
 
@@ -15,11 +14,6 @@ class TurtleTryTal():
          rate = rospy.Rate(10) # 10hz
          rate.sleep()
 
-def generate_launch_description():
-    return LaunchDescription([
-        launch_ros.actions.Node(
-                namespace= "turtlesim1", package='turtlesim', executable='turtlesim_node', output='screen')
-    ])
 
 def key_in():
     key = input("w, s, d, a, q <<")
