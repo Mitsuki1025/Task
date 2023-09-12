@@ -6,12 +6,13 @@ from geometry_msgs.msg import Twist
 
 ###########################################################
 
-class TurtleTestTal():  
+class Talker():  
     def __init__(self):
         self.twist_pub = rospy.Publisher('turtle1/cmd_vel', Twist, queue_size=10)
         
     def publish(self):
-    
+            cmd_vel = Twist()
+
             cmd_vel.linear.x  =  0
             cmd_vel.angular.z =  0 
 
@@ -33,11 +34,12 @@ class TurtleTestTal():
 
                              # rospyモジュールの初期化    
 if __name__ == '__main__':   #①初期化宣言  最初に実行
-     cmd_vel = Twist()
      rospy.init_node("task_test_tal_node", anonymous=True) 
      rate = rospy.Rate(10) # 10hz
-     
+     talker = Talker()
+
      while not rospy.is_shutdown():
+         talker.publish()
          rate.sleep()
          
 
