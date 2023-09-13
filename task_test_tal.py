@@ -51,7 +51,7 @@ class Talker():
                         cmd_vel.angular.z = 0.49        
                 
                 elif d == "31" or d == "32" or d == "33" or d == "34" or d == "35" :
-                        cmd_vel.linear.x =  0.5  
+                        cmd_vel.linear.x =  0.4  
 
                 elif d == "36" or d == "37" or d == "38" or d == "39" or d == "40":
                         cmd_vel.linear.y = - 0.3 
