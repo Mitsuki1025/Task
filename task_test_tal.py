@@ -15,18 +15,19 @@ class Talker():
     def publish(self):
             cmd_vel = Twist() 
             
-            dt = datetime.datetime.today()  # ローカルな現在の日付と時刻を取得 
-            print(f'hour: {dt.hour}, minute: {dt.minute}, second: {dt.second}')  
-           
-      
-            if  (int(dt.hour) <=  11 ): #１時〜１１時
-                  cmd_vel.linear.z = -0.3
-            elif ( int(dt.hour) ==  12 ): #12時 
+            t_delta = datetime.timedelta(hours=9)
+            JST = datetime.timezone(t_delta, 'JST')
+            now = datetime.datetime.now(JST)  
+            # print(f'hour: {dt.hour}, minute: {dt.minute}, second: {dt.second}')
+  
+            d = f'{now:%M}'
+                              
+            if  d == "12" :
                   cmd_vel.linear.y = -0.3
-            elif (int(dt.hour) >=  23 ): #１３時から２３時まで
-                  cmd_vel.linear.z = 0.3
-            else:                   
-                  cmd_vel.linear.y = 0.3 #24時 
+            else :
+                 cmd_vel.angular.z = 0.3
+                 
+
 
             self.twist_pub.publish(cmd_vel)
             
