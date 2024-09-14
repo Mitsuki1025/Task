@@ -82,6 +82,17 @@ class CustomNode(Node):
         if result: self.cmd = Command.GO_RIGHT
         return result
 
+    def turn_left(left_knee, left_heel) -> bool:
+        """
+        extend your left heel to the left
+        """
+        return (left_knee.x < left_heel.x)
+
+    def turn_right(right_knee, right_heel) -> bool:
+        """
+        extend your right heel to the right
+        """
+        return (right_knee.x > right_heel.x)
 
     def go_forward(self, right_elbow, right_index) -> bool:
         """
@@ -90,23 +101,6 @@ class CustomNode(Node):
         result = (abs(right_elbow.x - right_index.x) < MaxNormalWidth) and (abs(right_elbow.y - right_index.y) < MaxNormalHeight)
         if result: self.cmd = Command.GO_FORWARD
         return result
-#
-    def turn_left(self, left_wrist, left_elbow ,left_shoulder) -> bool:
-        """
-        
-        """
-        result: bool =  (left_shoulder.y > left_wrist.y)and(abs(left_shoulder.y - left_elbow.y) > MinNormalWidth) and (abs(left_shoulder.x - left_elbow.x) > MinNormalWidth)
-        if result: self.cmd = Command.TUEN_LEFT
-        return result
-
-    def turn_right(self, right_wrist, right_elbow ,right_shoulder) -> bool:
-        """
-      
-        """
-        result: bool =  (right_shoulder.y > right_wrist.y)and(abs(right_shoulder.y - right_elbow.y) > MinNormalWidth) and (abs(right_shoulder.x - right_elbow.x) > MinNormalWidth)
-        if result: self.cmd = Command.TUEN_RIGHT
-        return result
-#
 
     # def stop(left_elbow, left_index, right_elbow, right_index):
     #       return go_forward(left_elbow, left_index) and go_forward(right_elbow, right_index)
@@ -151,10 +145,10 @@ class CustomNode(Node):
             if self.stop(bodyparts['LEFT_HIP'], bodyparts['LEFT_WRIST'], bodyparts['LEFT_EYE'], bodyparts['RIGHT_HIP'], bodyparts['RIGHT_WRIST'], bodyparts['RIGHT_EYE']): pass            
             elif self.go_left(bodyparts['LEFT_WRIST'], bodyparts['LEFT_SHOULDER']): pass
             elif self.go_right(bodyparts['RIGHT_WRIST'], bodyparts['RIGHT_SHOULDER']): pass
-#
-            elif 
-            elif
-#
+            elif turn_left(bodyparts['LEFT_KNEE'], bodyparts['LEFT_HEEL']): pass
+                if Verbose: print('[+] TURN LEFT')
+            elif turn_right(bodyparts['RIGHT_KNEE'], bodyparts['RIGHT_HEEL']): pass
+                if Verbose: print('[+] TURN RIGHT')
             elif self.go_forward(bodyparts['RIGHT_ELBOW'], bodyparts['RIGHT_INDEX']): pass
             else: self.cmd = Command.STOP
 
